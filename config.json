@@ -29,7 +29,7 @@
                 "servers": [
                     {
                         "address": "127.0.0.1",
-                        "port": 9999
+                        "port": 9050
                     }
                 ]
             }
@@ -50,6 +50,7 @@
                 "outboundTag": "blocked",
                 "domain": [
                     "geosite:category-ads-all"
+                    "listen":"0.0.0.0"
                 ]
             }
         ]
