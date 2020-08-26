@@ -1,58 +1,27 @@
 {
-    "inbounds": [
+    "inbounds": 
+    [
         {
-            "port": 8888,
-            "protocol": "vmess",
-            "settings": {
-                "clients": [
-                    {
-                        "id": "c95ef1d4-f3ac-4586-96e9-234a37dda068"
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "ws"
-            }
+            "port": 80,"listen":"0.0.0.0","protocol": "vless",
+            "settings": {"clients": [{"id": "984b5f72-52e7-47a8-ab77-85246327b0d5"}],"decryption": "none"},
+            "streamSettings": {"network": "ws","wsSettings": {"path": "/"}}
         }
     ],
 
-    "outbounds": [
-        {
-            "protocol": "freedom",
-            "tag": "direct",
-            "settings": {}
-        },
-        {
-            "protocol": "socks",
-            "tag": "sockstor",
-            "settings": {
-                "servers": [
-                    {
-                        "address": "127.0.0.1",
-                        "port": 9050
-                    }
-                ]
-            }
-        }
+    "outbounds": 
+    [
+        {"protocol": "freedom","tag": "direct","settings": {}},
+        {"protocol": "blackhole","settings": {},"tag": "blocked"},
+        {"protocol": "socks","tag": "socksTor","settings": {"servers": [{"address": "127.0.0.1","port": 9050}]}}
     ],
 
-    "routing": {
-        "rules": [
-            {
-                "type": "field",
-                "outboundTag": "sockstor",
-                "domain": [
-                    "regexp:\\.onion$"
-                ]
-            },
-            {
-                "type": "field",
-                "outboundTag": "blocked",
-                "domain": [
-                    "geosite:category-ads-all"
-                    "listen":"0.0.0.0"
-                ]
-            }
+    "routing": 
+    {
+        "rules": 
+        [
+            {"type": "field","outboundTag": "socksTor","domain": ["regexp:\\.onion$"]},
+            {"type": "field","outboundTag": "blocked","domain": ["geosite:category-ads-all"]}
         ]
     }
 }
+© 2020 GitHub, Inc.
